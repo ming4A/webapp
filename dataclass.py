@@ -1,6 +1,6 @@
 from ext import db
 class User(db.Model):
-    __table__ = "user"
+    __tablename__ = "user"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
     name = db.Column(db.String(50))
     pw = db.Column(db.String(25))
@@ -13,7 +13,7 @@ class User(db.Model):
         self.pw = pw
         self.total_m = self.total_m + consump
 class Commodit(db.Model):
-    __table__ = "commodit"
+    __tablename__ = "commodit"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
     name = db.Column(db.String(50))
     describe = db.Column(db.String(1000))
@@ -26,7 +26,7 @@ class Commodit(db.Model):
     stock_amount = db.Column(db.Integer)
     def __init__(self,name,describe,)
 class Userlikes(db.Model):
-    __table__ = "userlikes"
+    __tablename__ = "userlikes"
     user_id = db.Column(Integer,db.ForeignKey("user.id"))
     commodit_id = db.Column(Integer,db.ForeignKey("commodit.id"))
     id = db.Column(Integer,primary_key = True,autoincrement = True)
@@ -38,21 +38,36 @@ class Userlikes(db.Model):
         self.user_id = user_id
         self.vol = self.vol + increment
 class Order(db.Model):
-    __table__ = "orderglance"
+    __tablename__ = "orderglance"
     order_id = db.Column(db.Integer,primary_key = True,autoincrement = True)
     total = db.Column(db.Float)
 class Order_Info(db.Model):
-    __table__ = "orderinfo"
+    __tablename__ = "orderinfo"
     order_id = db.Column(db.Integer,db.ForeignKey("orderglance.order_id"))
     commodit_id = db.Column(db.Integer,db.ForeignKey("commodit.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
-    id = db.Column(db.Column(db.Integer,primary_key = True,autoincrement = True))
-    etotal = db.Column(db.Float)
+    id = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    enum = db.Column(db.Integer)
+    eprice = db.Column(db.Float)
     area = db.Column(db.Integer)
     #relevant
-    orderglance = db.relationship("Order",back_populates = "Order_Info")
-    commodit = db.relationship("Commodit",back_populates = "Order_Info")
-    user = db.relationship("User",back_populates = "Order_Info")
-    
-
+    orderglance = db.relationship("Order",back_populates = "orderinfo")
+    commodit = db.relationship("Commodit",back_populates = "orderinfo")
+    user = db.relationship("User",back_populates = "orderinfo")
+    def __init__(self,6)
+Order.Info = db.relationship("Order_Info",order_by = Order_Info.enum,back_populates = "user")
+'''
+class comments(db.Model):
+    __tablename__ = "comments"
+    id = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    commodit_id = db.Column(db.Integer,db.ForeignKey("commodit.id"))
+    comment = db.Column(db.String(500))
+    user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
+    user = db.relationship("User",back_populates = "comments")
+    commodit = db.relationship("Commodit",back_populates = "comments")
+    def __init__(self,user_id,commodit_id,comment):
+        self.user_id = user_id
+        self.commodit_id = commodit_id
+        self.comment = comment
+'''
 
