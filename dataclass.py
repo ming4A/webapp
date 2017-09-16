@@ -5,9 +5,15 @@ class User(db.Model):
     name = db.Column(db.String(50))
     pw = db.Column(db.String(25))
     area = db.Column(db.Integer)
+<<<<<<< HEAD
     total = db.Column(db.Float)
     '''total_m means total of current month'''
     total_m = db.Column(db.Float)
+=======
+    '''total = db.Column(db.Float)
+    '''total_m means total of current month'''
+    total_m = db.Column(db.Float)'''
+>>>>>>> day1
     def __init__(self,name,pw,consump):
         self.name = name
         self.pw = pw
