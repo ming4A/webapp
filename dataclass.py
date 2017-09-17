@@ -3,17 +3,11 @@ class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
     name = db.Column(db.String(50))
-    pw = db.Column(db.String(25))
+    pw = db.Column(db.String(128))
     area = db.Column(db.Integer)
-<<<<<<< HEAD
-    total = db.Column(db.Float)
+    #total = db.Column(db.Float)
     '''total_m means total of current month'''
-    total_m = db.Column(db.Float)
-=======
-    '''total = db.Column(db.Float)
-    '''total_m means total of current month'''
-    total_m = db.Column(db.Float)'''
->>>>>>> day1
+    #total_m = db.Column(db.Float)
     def __init__(self,name,pw,consump):
         self.name = name
         self.pw = pw
@@ -30,13 +24,12 @@ class Commodit(db.Model):
     #vol_m represents the volume of this month
     vol_m = db.Column(db.Integer)
     stock_amount = db.Column(db.Integer)
-    def __init__(self,name,describe,)
 class Userlikes(db.Model):
     __tablename__ = "userlikes"
-    user_id = db.Column(Integer,db.ForeignKey("user.id"))
-    commodit_id = db.Column(Integer,db.ForeignKey("commodit.id"))
-    id = db.Column(Integer,primary_key = True,autoincrement = True)
-    vol = db.Column(Integer)
+    user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
+    commodit_id = db.Column(db.Integer,db.ForeignKey("commodit.id"))
+    id = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    vol = db.Column(db.Integer)
     user = db.relationship("User",back_populates = "userlikes")
     commodit = db.relationship("commodit",back_populates = "userlikes")
     def __init__(self,user_id,commodit_id,increment):
@@ -60,7 +53,6 @@ class Order_Info(db.Model):
     orderglance = db.relationship("Order",back_populates = "orderinfo")
     commodit = db.relationship("Commodit",back_populates = "orderinfo")
     user = db.relationship("User",back_populates = "orderinfo")
-    def __init__(self,6)
 Order.Info = db.relationship("Order_Info",order_by = Order_Info.enum,back_populates = "user")
 '''
 class comments(db.Model):
