@@ -3,19 +3,30 @@ class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
     name = db.Column(db.String(50))
+    email = db.Column(db.String(50))
     pw = db.Column(db.String(128))
-    area = db.Column(db.Integer,default = 0)
+    area_index = db.Column(db.Integer,db.ForeignKey("area.area_index"),default = 0)
     #total = db.Column(db.Float)
     '''total_m means total of current month'''
     total_m = db.Column(db.Float,default = 0.0)
-    def __init__(self,name,pw,consump = 0,area = 0):
+    area = db.relationship("Area",back_populates = "user")
+    def __init__(self,name,pw,email,consump = 0,area_index = 1):
         self.name = name
         self.pw = pw
+        self.email = email
         self.total_m = 0.0
         self.total_m = self.total_m + consump
-        self.area = area
-    def add_consump(v = 0):
+        self.area_index = area_index
+    def add_consump(v = 0): 
         self.total_m = self.total_m + v
+class Area(db.Model):
+    __tablename__ = "area"
+    area_index = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    area_name = db.Column(db.String(50))
+    def __init__(self, area_name):
+        self.area_name = area_name
+Area.user = db.relationship("User",order_by = User.total_m,back_populates = "area")
+    
 class Commodit(db.Model):
     __tablename__ = "commodit"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
@@ -25,6 +36,7 @@ class Commodit(db.Model):
     times = db.Column(db.Integer)
     price = db.Column(db.Float)
     vol = db.Column(db.Integer)
+    img_src = db.Column(db.String(500))
     #vol_m represents the volume of this month
     vol_m = db.Column(db.Integer)
     stock_amount = db.Column(db.Integer)
