@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{%block mediaDisplay%}
+{%endblock%}
+{%block content%}
+<div class="uk-grid uk-flex-left">
+	<div class="uk-width-1-2 uk-row-first uk-margin">
+		<div class="uk-slidenav-position" data-uk-slideshow>
+			<ul class="uk-slideshow">
+				<li>
+					<img src="http://www.getuikit.net/docs/images/placeholder_800x400_1.jpg" alt="" height="300px" width="200px">
+				</li>
+				<li>
+					<img src="http://www.getuikit.net/docs/images/placeholder_800x400_2.jpg" alt="" height="300px" width="200px">
+				</li>
+				<li>
+					<img src="http://www.getuikit.net/docs/images/placeholder_800x400_3.jpg" alt="" height="300px" width="200px">
+				</li>
+			</ul>
+			<ul class="uk-thumbnav uk-flex-column uk-grid-width-1-6 uk-position-top-right">
+				<li data-uk-slideshow-item="0"><a href="#"><img src="/static/img/timg.jpg"></a></li>
+				<li data-uk-slideshow-item="1"><a href="#"><img src="/static/img/xia.jpg"></a></li>
+				<li data-uk-slideshow-item="2"><a href="#"><img src="/static/img/hetao.jpg"></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{%endblock%}

@@ -1,34 +1,177 @@
-{% extends "bootstrap/base.html" %}
-{%import 'bootstrap/wtf.html' as wtf%}
-{%block title%} Web4User {% endblock %}
-{%block navbar %}
-<div class = "navbar navbar-inverse" role = "navigation" style="background-color:cadetblue">
-    <div class = "contianer">
-        <div class = "nvbar-header">
-            <button type="button" class = "navbar-toggle" 
-                data-toggle  = "collapse" data-target = ".navbar-collapse">
-                <span class = "sr-only">Toggle Navigation</span>
-                <span class = "icon-bar"></span>
-                <span class = "icon-bar"></span>
-            </button>
-            <a class = "navbar-brand" href = '/home' style="color:antiquewhite">Home</a>
-            <a class = "navbar-brand" href = '/login' style="color:antiquewhite">Login</a>
-        </div>
-    </div>
-</div>
-{%endblock%}
-{%block content%}
-<div class = "container">
-    {%for message in get_flashed_messages()%}
-    <div class = "alert alert-warnning">
-        <button type = 'button' class = 'close' data-dismiss = "alert">&times;</button>
-        {{message}}
-    </div>
-    {%endfor%}
-    <div class = "page-header">
-        <h1>Hello,{%if name %}{{name}} {%else%}Stranger{%endif%}!</h1>
-    </div>
-</div>
-{%if form%}{{wtf.quick_form(form)}} {%else%}{%endif%}
-{%if register%}<a class ='btn' href = "/register">Register</a>{%endif%}
-{%endblock%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Awesome Webpages</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/uikit.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/components/slidenav.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/components/dotnav.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/components/slideshow.css">
+	<link rel="shortcut icon" href="/static/favicon.ico">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/static/js/uikit.min.js"></script>
+	<script src="/static/js/components/slideshow.js"></script>
+	<script src="/static/js/components/slideshow-fx.js"></script>
+</head>
+<body>
+	<!-- nav part-->
+<nav class="uk-navbar uk-margin uk-navbar-container">
+	<a class="uk-navbar-brand" href="#"><img src="static/logo.png"></a>
+	<ul class="uk-navbar-nav uk-width-3-4"><!--Horizonal--></ul>
+		<li class="uk-navbar-content">
+			<a href="#" class="uk-button">Home</a>
+		</li>
+	</ul>
+	<div class="uk-navbar-flip">
+		<ul class="uk-navbar-nav">
+			<li class="uk-parent" data-uk-dropdown="{mode:'hover'}">
+					<a class="uk-button">MySpace</a>
+					<div class="uk-dropdown uk-dropdown-navbar">
+						<ul class="uk-nav uk-nav-navbar"><!--Vertical-->
+							<li class="uk-active">
+								<a href='#'>click</a>
+							</li>
+							<li>
+								<a href='#'>click</a>
+							</li>
+						</ul>
+					</div>
+			</li>
+			<li class="uk-parent" data-uk-dropdown>
+					<a class="uk-button">MySpace</a>
+					<div class="uk-dropdown uk-dropdown-navbar">
+						<ul class="uk-nav uk-nav-navbar"><!--Vertical-->
+							<li class="uk-active">
+								<a href='#'>click</a>
+							</li>
+							<li>
+								<a href='#'>click</a>
+							</li>
+						</ul>
+					</div>
+			</li>
+		</ul>
+	</div>
+	<div class="uk-navbar-content uk-navbar-center">
+		<form class="uk-form uk-display-inline-block">
+			<input type="text" placeholder="Start from here..." >
+		</form>
+	</div>
+</nav>
+<!--end of nav part-->
+{%block mediaDisplay%}
+	<div class="uk-grid">
+		<div class="uk-width-1-6 uk-container-left uk-margin-large-top">
+			<ul class="uk-nav uk-nav-navbar uk-nav-parent-icon uk-margin" data-uk-nav>
+				<li><a href="#">Items</a></li>
+				<li><a href="#">Items</a></li>
+				<li class="uk-parent">
+					<a href="#">Items</a>
+					<ul class="uk-nav-sub uk-nav-navbar">
+						<li><a href="#">Items</a></li>
+						<li><a href="#">Items</a></li>
+						<li><a href="#">Items</a></li>
+					</ul>
+				</li>
+				<li class="uk-parent">
+					<a href="#">Items</a>
+					<ul class="uk-nav-sub uk-nav-navbar">
+						<li><a href="#">Items</a></li>
+						<li><a href="#">Items</a></li>
+						<li><a href="#">Items</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Items</a></li>
+				<li><a href="#">Items</a></li>
+				<li><a href="#">Items</a></li>
+			</ul>
+		</div>
+		<div class="uk-width-1-2 uk-container-center">
+			<div class="uk-slidenav-position" data-uk-slideshow>
+				<ul class="uk-slideshow">
+					<li>
+						<figure class="uk-overlay uk-overlay-hover">
+							<img src="http://www.getuikit.net/docs/images/placeholder_800x400_1.jpg" alt="" height="400" width="800">
+							<figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-bottom" >
+								<h3>Some Wonderful Headline.</h3>
+								<p>Some Remarkable Descriptions.</p>
+							</figcaption>
+						</figure>
+					</li>
+					<li>
+						<figure class="uk-overlay uk-overlay-hover">
+							<img src="http://www.getuikit.net/docs/images/placeholder_800x400_2.jpg" alt="" height="400" width="800">
+							<figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-bottom" >
+								<h3>Some Wonderful Headline.</h3>
+								<p>Some Remarkable Descriptions.</p>
+							</figcaption>
+						</figure>
+					</li>
+					<li>
+						<figure class="uk-overlay uk-overlay-hover">
+							<img src="http://www.getuikit.net/docs/images/placeholder_800x400_3.jpg" alt="" height="400" width="800">
+							<figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-bottom" >
+								<h3>Some Wonderful Headline.</h3>
+								<p>Some Remarkable Descriptions.</p>
+							</figcaption>
+						</figure>
+					</li>
+				</ul>
+				<a class="uk-slidenav uk-slidenav-previous uk-slidenav-contrast" data-uk-slideshow-item="previous"></a>
+				<a class="uk-slidenav uk-slidenav-next uk-slidenav-contrast" data-uk-slideshow-item="next"></a>
+				<ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+					<li data-uk-slideshow-item="0"><a href="#"></a></li>
+					<li data-uk-slideshow-item="1"><a href="#"></a></li>
+					<li data-uk-slideshow-item="2"><a href="#"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{%endblock%}
+		<!--content part-->
+	{%block content%}
+	<hr class="uk-article-divider">
+	<div class="uk-grid uk-margin">
+		<div class="uk-width-1-4 ">
+			<div class=" uk-panel uk-panel-box uk-container-center">
+			<div class="uk-panel-teaser">
+				<img src="static/img/hetao.jpg">
+			</div>
+			<span class="uk-text-center uk-text-meta">Wonderful food name</span>
+			<br/>
+			<span class="uk-text-center uk-text-danger">&yen;9.88</span>
+			</div>
+		</div>
+		<div class="uk-width-1-4 uk-animation-hover">
+			<div class=" uk-panel uk-panel-box uk-animation-reverse uk-animation-scale">
+			<div class="uk-panel-teaser">
+				<img src="static/img/xia.jpg">
+			</div>
+			<span class="uk-text-center uk-text-meta">Wonderful food name</span>
+			<br/>
+			<span class="uk-text-center uk-text-danger">&yen;9.88</span>
+			</div>
+		</div>
+		<div class="uk-width-1-4">
+			<div class=" uk-panel uk-panel-box ">
+			<div class="uk-panel-teaser">
+				<img src="static/img/hetao.jpg">
+			</div>
+			<span class="uk-text-center uk-text-meta">Wonderful food name</span>
+			<br/>
+			<span class="uk-text-center uk-text-danger">&yen;9.88</span>
+			</div>
+		</div>
+		<div class="uk-width-1-4">
+			<div class=" uk-panel uk-panel-box ">
+			<div class="uk-panel-teaser">
+				<img src="static/img/hetao.jpg">
+			</div>
+			<span class="uk-text-center uk-text-meta">Wonderful food name</span>
+			<br/>
+			<span class="uk-text-center uk-text-danger">&yen;9.88</span>
+			</div>
+		</div>
+	</div>
+	{%endblock%}
+</body>
+</html>

@@ -1,4 +1,5 @@
 from ext import db
+import datetime
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer,primary_key = True,autoincrement = True)
@@ -21,25 +22,40 @@ class User(db.Model):
         self.total_m = self.total_m + v
 class Area(db.Model):
     __tablename__ = "area"
-    area_index = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    area_index = db.Column(db.Integer,primary_key=True, autoincrement=True)
     area_name = db.Column(db.String(50))
     def __init__(self, area_name):
         self.area_name = area_name
-Area.user = db.relationship("User",order_by = User.total_m,back_populates = "area")
-    
+Area.user = db.relationship("User", order_by=User.total_m, back_populates="area")
 class Commodit(db.Model):
     __tablename__ = "commodit"
-    id = db.Column(db.Integer,primary_key = True,autoincrement = True)
+    id = db.Column(db.Integer,primary_key = True, autoincrement = True)
     name = db.Column(db.String(50))
     describe = db.Column(db.String(1000))
     points = db.Column(db.Float)
+    #mark times
     times = db.Column(db.Integer)
+    update_time = db.Column(db.DateTime, default=datetime.datetime.utcnow())
     price = db.Column(db.Float)
+    avg_points = db.Column(db.Float)
     vol = db.Column(db.Integer)
     img_src = db.Column(db.String(500))
     #vol_m represents the volume of this month
     vol_m = db.Column(db.Integer)
     stock_amount = db.Column(db.Integer)
+    discount = db.Column(db.Float)
+    def __init__(self, _name, _price, _stock_amount, _describe, _img_src, _discount=1.0):
+        self.name = _name
+        self.price = _price
+        self.stock_amount = _stock_amount
+        self.describe = _describe
+        self.discount = _discount
+        self.img_src = _img_src
+        self.points = 0
+        self.avg_points = 0.0
+        self.times = 0
+        self.vol = 0
+        self.vol_m = 0
 class Userlikes(db.Model):
     __tablename__ = "userlikes"
     user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
@@ -90,4 +106,3 @@ class comments(db.Model):
         self.commodit_id = commodit_id
         self.comment = comment
 '''
-

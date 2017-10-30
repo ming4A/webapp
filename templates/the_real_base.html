@@ -1,0 +1,83 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="static/css/uikit.min.css">
+    <script src="static/js/uikit.min.js"></script>
+    <script src="static/js/uikit-icons.min.js"></script>
+    <title>HomePage</title>
+    </head>
+    <body>
+        <!--nav part-->
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class= "uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="#"><img src="static/logo.png"></a>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active">
+                        <a><span uk-icon="icon:cart"></span>add to cart</a>
+                    </li>
+                    <li>
+                        <a href="#">MySpace</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-active"><a href="#">MyIndex</a></li>
+                                <li><a href="#">MyOrderList</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a><span uk-icon="icon : comment"></span>Contact us</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--end of nav-->
+        <div class="uk-flex" uk-grid>
+            <div class="uk-width-1-2">
+                <div class="uk-position-relative uk-visible-toggle" uk-slideshow>
+                    <ul class="uk-slideshow-items">
+                        <li>
+                            <img src="http://www.getuikit.net/docs/images/placeholder_800x400_2.jpg" alt="" uk-cover>
+                        </li>
+                        <li>
+                            <img src="http://www.getuikit.net/docs/images/placeholder_800x400_3.jpg" alt="" uk-cover>
+                        </li>
+                    </ul>
+                    <a class="uk-position-center-left uk-hidden-hover uk-position-middle uk-light" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+                    <a class="uk-position-center-right uk-hidden-hove uk-position-middle uk-light" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+                </div>
+            </div>
+            <div class="uk-card uk-card-body">
+                <p class="uk-text-danger uk-text-top">On Sales(24hr)</p>
+            </div>
+            <div class="uk-width-1-4 uk-flex-first uk-card uk-card uk-card-body">
+                <ul class="uk-nav-default uk-nav-parent-icon uk-text-center" uk-nav>
+                    <li class="uk-parent">
+                        <a href="#">Type 1</a>
+                        <ul class="uk-nav-sub">
+                            <li><a href="#">Item1</a></li>
+                            <li><a href="#">Item2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="uk-active">Important Item</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="#">Item3</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="uk-divider-icon">
+        <div class="uk-child-width-1-4 uk-grid-divider" uk-grid>
+            {%for commodit in commodits%}
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <div class="uk-card-media-top"><img src={{commodit.img_src}} alt=""></div>
+                        <h3 class="uk-card-title">{{commodit.name}}</h3>
+                        {%if commodit.discount!=1%}
+                        <del>&yen;{{commodit.price}}</del>
+                        {%endif%}
+                        <span class="uk-text-warning">&yen;{{commodit.discount*commodit.price}} <br> {{commodit.vol}} SOLD</span>
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+    </body>
+</html>
